@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FED22STO Data Interaction</title>
+    <link rel='stylesheet' type='text/css' href='style.php'/>
+
+</head>
+<body>
+<header>
+    <nav>
+        <a href="index.html">Newsletter</a>
+    </nav>
+</header>
+<h1>Admin page</h1>
+<main>
+    <section class="form-section">
+        <form class="test-form" id="postNews">
+            <label for="news-title">News Title</label>
+            <input type="text" name="news-title" id="news-title">
+            <label for="news-content">News Content</label>
+            <textarea id="news-content"></textarea>
+            <button type="submit">Save Post</button>
+        </form>
+    </section>
+    <section class="news-items" id="newsItemsContainer">
+        <p id="allNews">Insert here</p>
+    </section>
+
+</main>
+
+<script src="adminScript.js"></script>
+</body>
+</html>
