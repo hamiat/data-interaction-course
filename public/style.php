@@ -1,6 +1,9 @@
 <?php
 header("Content-type: text/css; charset: UTF-8");
 ?>
+* {
+box-sizing: border-box;
+}
 
 body{
 display: grid;

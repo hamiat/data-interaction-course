@@ -62,22 +62,11 @@ class Api
 
 
         $newsApi = new NewsApi(new NewsService($pdo));
-        $app->group('/api/news', function (Group $group) use ($newsApi) {
+        $app->group('/api/newsletter', function (Group $group) use ($newsApi) {
             $newsApi->setup($group);
         });
 
         return $app;
     }
 
-    private function storeInTemporaryFile(string $pathOrData)
-    {
-        if (file_exists($pathOrData)) {
-            return $pathOrData;
-        } else {
-            $filePath = tempnam(sys_get_temp_dir(), 'mysql');
-            file_put_contents($filePath, $pathOrData);
-            return $filePath;
-        }
-
-    }
 }

@@ -66,27 +66,19 @@ class NewsService
     }
 
 
-    public function updateNewsItem(NewsModel $model)
+    public function updateNewsItem(NewsModel $model): ?NewsModel
     {
-        $query = "update newsletter set title=:title,content=:content,updated=current_timestamp where id=:id;";
+        $query = "update newsletter set title=:title,content=:content,created=current_timestamp where id=:id;";
         $statement = $this->prepare($query);
         $statement->execute([
-            'id'=> $id->id,
-            'title'=> $model->title,
-            'content'=> $model->content
-            ]);
-
-        return $this->getNewsItem($id);
-
-        $query = "insert into newsletter (title,content) values (:title,:content);";
-        $statement = $this->prepare($query);
-        $statement->execute([
-            'title'=>$model->title,
-            'content'=>$model->content
+            'id' => $model->id,
+            'title' => $model->title,
+            'content' => $model->content
         ]);
 
         return $this->getNewsItem($model->id);
     }
+
 
     public function deleteNewsItem(int $id)
     {
