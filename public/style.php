@@ -19,6 +19,16 @@ justify-content: center;
 border: 1px solid crimson;
 }
 
+ul{
+display: flex;
+list-style: none;
+padding: 0;
+}
+
+ul li {
+padding: 10px;
+}
+
 h1{
 grid-column: 1 / span 2;
 grid-row: 2;
@@ -50,5 +60,9 @@ grid-column: 3 / span 1;
 grid-row: 1;
 color: black;
 border: 1px solid gold;
+}
+
+.hidden {
+display:none;
 }
 

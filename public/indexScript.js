@@ -1,53 +1,66 @@
-let newsItems = document.getElementById('allNews');
-let mainNews = document.getElementById('mainNews');
-let apiUrl = 'http://localhost:8080/api/newsletter';
+let newsItems = document.getElementById('recentNewsContainer');
+let tester = document.getElementById('titles-space');
+let addNewsForm = document.getElementById('postNewsItem');
+let title = document.getElementById('news-title');
+let news = document.getElementById('news-content');
+let aboutBtn = document.getElementById('about-btn');
 
-function getAllPosts(){
-//get stuff from database (available data params: id, title, created, content)
+let apiUrl = 'http://localhost:8080/api/newsletter';
+let output = '';
+
+let renderNewsItems = function (data){
+    data.forEach(data => {
+        output += `
+            <div data-id=${data.id}>
+                <p class="posted-title">${data.title}</p>
+                <p class="posted-news">${data.content}</p>
+                <p>${data.created}</p>
+            </div>
+            `;
+    });
+    newsItems.innerHTML = output;
+};
+
+let renderNewsTitle = function (data){
+    data.forEach(data => {
+        output += `
+            <div data-id=${data.id}>
+                <p class="posted-title">${data.title}</p>
+            </div>
+            `;
+    });
+    tester.innerHTML = output;
+};
+
+//get news items from database via url (available data params: id, title, created, content)
 fetch(apiUrl).then((response) => {
     console.log('resolved', response);
     return response.json();
 }).then(data => {
-    console.log(data);
-    let output = '';
-    for(let i in data){
-        output += `<tr>
-            <p>${data[i].id}</p><br>
-            <p>${data[i].title}</p><br>
-            <p>${data[i].created}</p><br>
-            </tr>`;
-    }
-
-    newsItems.innerHTML = output;
+    renderNewsItems(data);
 }).catch((err) => {
     console.log('rejected', err);
 });
 
-}
 
-function getLatestPost(){
-//get stuff from database (available data params: id, title, created, content)
+let newsTitle = function (){
     fetch(apiUrl).then((response) => {
         console.log('resolved', response);
         return response.json();
     }).then(data => {
-        console.log(data);
-        let output = '';
-        for(let i in data){
-            output += `<tr>
-            <p>${data[i].id}</p><br>
-            <p>${data[i].title}</p><br>
-            <p>${data[i].created}</p><br>
-            </tr>`;
-        }
-
-        mainNews.innerHTML = output;
+        renderNewsTitle(data);
     }).catch((err) => {
         console.log('rejected', err);
     });
-
 }
 
 
-getAllPosts();
-getLatestPost();
+
+aboutBtn.addEventListener('click', changeToAbout);
+
+function changeToAbout (){
+    //newsItems.classList.add("hidden");
+    history.replaceState(newsTitle(), null, "about");
+
+}
+

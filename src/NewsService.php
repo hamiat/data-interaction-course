@@ -44,6 +44,19 @@ class NewsService
         return $newitems;
     }
 
+    public function getPosts(): array
+    {
+        $query = "select * from posts";
+        $statement = $this->prepare($query);
+        $statement->execute();
+
+        $postedItems = array();
+        while ($entry = $statement->fetchObject(NewsModel::class)) {
+            $postedItems[] = $entry;
+        }
+        return $postedItems;
+    }
+
     public function getNewsItem(int $id): ?NewsModel
     {
         $query = "select id,title,content from newsletter where id=:id";
