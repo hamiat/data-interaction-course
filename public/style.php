@@ -3,6 +3,7 @@ header("Content-type: text/css; charset: UTF-8");
 ?>
 * {
 box-sizing: border-box;
+text-decoration: none;
 }
 
 body{
@@ -12,11 +13,12 @@ grid-gap:2em;
 }
 
 header{
-grid-column: 3 / span 1;
+grid-column: 1 / span 3;
 grid-row: 1;
 display: flex;
 justify-content: center;
 border: 1px solid crimson;
+background-color: slategray;
 }
 
 ul{
@@ -62,7 +64,22 @@ color: black;
 border: 1px solid gold;
 }
 
+/* newsletter (index) */
+
 .hidden {
 display:none;
 }
 
+
+.seeMore {
+padding: 0 18px;
+display: none;
+overflow: hidden;
+background-color: #f1f1f1;
+}
+
+.posted-title {
+padding: 0 5px;
+
+
+}

@@ -11,8 +11,9 @@ let output = '';
 let renderNewsItems = function (data){
     data.forEach(data => {
         output += `
-            <div data-id=${data.id}>
-                <p class="posted-title">${data.title}</p>
+            <h2 class="posted-title">${data.title}</h2>
+            <button type="button" class="collapsible">Show More</button>
+            <div class="seeMore" data-id=${data.id}>
                 <p class="posted-news">${data.content}</p>
                 <p>${data.created}</p>
             </div>
@@ -20,6 +21,23 @@ let renderNewsItems = function (data){
     });
     newsItems.innerHTML = output;
 };
+
+function collapsible () {
+    let coll = document.getElementsByClassName("collapsible");
+    let i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            let seeMore = this.nextElementSibling;
+            if (seeMore.style.display === "block") {
+                seeMore.style.display = "none";
+            } else {
+                seeMore.style.display = "block";
+            }
+        });
+    }
+}
 
 let renderNewsTitle = function (data){
     data.forEach(data => {
@@ -38,6 +56,7 @@ fetch(apiUrl).then((response) => {
     return response.json();
 }).then(data => {
     renderNewsItems(data);
+    collapsible();
 }).catch((err) => {
     console.log('rejected', err);
 });
