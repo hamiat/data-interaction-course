@@ -10,17 +10,38 @@ let output = '';
 let renderNewsItems = function (data){
     data.forEach(data => {
         output += `
-            <div data-id=${data.id}>
-                <p class="posted-title">${data.title}</p>
+            <div>
+                <p id="first-title" class="posted-title">${data.title}</p>
                 <p>${data.created}</p>
-                <p class="posted-news">${data.content}</p>
-                <button id="deleteNewsItem">Delete</button>
-                <button id="editNewsItem">Edit</button>
+                <p class="collapsible" id="collapseBtn">Show More</p>
+                <div class="seeMore" data-id=${data.id}>
+                    <p id="second-title" class="posted-title">${data.title}</p>
+                    <p class="posted-news">${data.content}</p>
+                    <button id="deleteNewsItem">Delete</button>
+                    <button id="editNewsItem">Edit</button>
+                </div>
             </div>
             `;
     });
     newsItems.innerHTML = output;
 };
+
+function collapsible () {
+    let coll = document.getElementsByClassName("collapsible");
+    let i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            let seeMore = this.nextElementSibling;
+            if (seeMore.style.display === "block") {
+                seeMore.style.display = "none";
+            } else {
+                seeMore.style.display = "block";
+            }
+        });
+    }
+}
 
 //get news items from database via url (available data params: id, title, created, content)
 fetch(apiUrl).then((response) => {
@@ -28,6 +49,7 @@ fetch(apiUrl).then((response) => {
     return response.json();
 }).then(data => {
     renderNewsItems(data);
+    collapsible ();
     }).catch((err) => {
     console.log('rejected', err);
 });
@@ -39,6 +61,8 @@ newsItems.addEventListener('click', function (e) {
     let deleteBtnIsPressed = e.target.id == 'deleteNewsItem';
     let editBtnIsPressed = e.target.id == 'editNewsItem';
     let id = (e.target.parentElement.dataset.id);
+
+    const collapseBtn = document.getElementById('collapsible');
 
     //deleting
     if (deleteBtnIsPressed) {
@@ -114,6 +138,7 @@ addNewsForm.addEventListener('submit', function(e) {
             const dataArr = []; //posted news item is now an array
             dataArr.push(data);
             renderNewsItems(dataArr);
+            location.reload();
             console.log(dataArr);
         })
         .catch(err => {

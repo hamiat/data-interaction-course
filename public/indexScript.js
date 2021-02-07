@@ -11,11 +11,10 @@ let output = '';
 let renderNewsItems = function (data){
     data.forEach(data => {
         output += `
-            <h2 class="posted-title">${data.title}</h2>
-            <button type="button" class="collapsible">Show More</button>
+
+            <h2 class="posted-title collapsible">${data.title}<span id="news-date">${data.created}</span></h2>
             <div class="seeMore" data-id=${data.id}>
                 <p class="posted-news">${data.content}</p>
-                <p>${data.created}</p>
             </div>
             `;
     });
