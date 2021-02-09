@@ -26,6 +26,19 @@ let renderNewsItems = function (data){
     newsItems.innerHTML = output;
 };
 
+//get news items from database via url (available data params: id, title, created, content)
+fetch(apiUrl).then((response) => {
+    console.log('resolved', response);
+    return response.json();
+}).then(data => {
+    renderNewsItems(data);
+    collapsible ();
+}).catch((err) => {
+    console.log('rejected', err);
+});
+
+
+//see more
 function collapsible () {
     let coll = document.getElementsByClassName("collapsible");
     let i;
@@ -43,16 +56,7 @@ function collapsible () {
     }
 }
 
-//get news items from database via url (available data params: id, title, created, content)
-fetch(apiUrl).then((response) => {
-    console.log('resolved', response);
-    return response.json();
-}).then(data => {
-    renderNewsItems(data);
-    collapsible ();
-    }).catch((err) => {
-    console.log('rejected', err);
-});
+
 
 //deleting, editing and updating news items from/to database
 newsItems.addEventListener('click', function (e) {
@@ -62,7 +66,6 @@ newsItems.addEventListener('click', function (e) {
     let editBtnIsPressed = e.target.id == 'editNewsItem';
     let id = (e.target.parentElement.dataset.id);
 
-    const collapseBtn = document.getElementById('collapsible');
 
     //deleting
     if (deleteBtnIsPressed) {

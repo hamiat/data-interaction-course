@@ -13,13 +13,12 @@ grid-gap:1em;
 }
 
 header{
-grid-column: 2 / span 1;
+grid-column: 1 / span 3;
 grid-row: 1;
 display: flex;
 justify-content: center;
 border: 2px ridge slategrey;
 font-family: calibri;
-
 
 }
 
@@ -33,15 +32,19 @@ background-color: palegreen;
 }
 
 ul{
-display: flex;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
 list-style: none;
 padding: 0;
+
+
 }
 
 ul li {
 padding: 1em 5em ;
 }
-.aboutBtn {
+
+.aboutBtn, .contactBtn, .homeBtn {
 text-decoration: underline;
 text-decoration-style: dotted;
 cursor: pointer;
@@ -86,14 +89,6 @@ p{
  font-family: calibri;;
 font-size: 1.1em;
 line-height: 1.5em;
-}
-
-
-
-/* newsletter (index) */
-
-.hidden {
-display:none;
 }
 
 

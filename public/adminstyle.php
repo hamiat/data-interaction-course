@@ -68,7 +68,9 @@ form *{
 width: 100%
 
 }
-
+form{
+gap: 10px;
+}
 
 label{
 font-size: 1.4em;
@@ -86,10 +88,12 @@ border-radius: 5px;
 }
 
 .content-input {
-height: 20em;
-font-size: 1em;
+height: 14em;
+font-size: 1.2em;
 border: 1.3px solid darkslategray;
 border-radius: 5px;
+font-family: calibri;
+
 }
 
 
