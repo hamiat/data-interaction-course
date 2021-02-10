@@ -14,6 +14,7 @@ let labelNewsTitle = document.getElementById('newsTitle')
 
 let apiUrl = 'http://localhost:8080/api/newsletter';
 let output = '';
+let outputAdminPosts = '';
 
 contactBtn.addEventListener('click', changeToContact);
 
@@ -182,7 +183,7 @@ function changeToContact (){
     //display all admin posts
     const adminPosts = function (data){
         data.forEach(data => {
-            outputAdminPosts = `
+            outputAdminPosts += `
             <div data-id=${data.id}>
                 <p class="posted-title">${data.firstName}</p>
                 <p class="posted-title">${data.lastName}</p>

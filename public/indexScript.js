@@ -94,7 +94,7 @@ function changeToAbout () {
     //display all admin posts
     const adminPosts = function (data){
         data.forEach(data => {
-            outputAdmin = `
+            outputAdmin += `
             <div data-id=${data.id}>
                 <p class="posted-title">${data.firstName}</p>
                 <p class="posted-title">${data.lastName}</p>
