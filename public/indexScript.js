@@ -96,10 +96,20 @@ function changeToAbout () {
         data.forEach(data => {
             outputAdmin += `
             <div data-id=${data.id}>
-                <p class="posted-title">${data.firstName}</p>
-                <p class="posted-title">${data.lastName}</p>
-                <p class="posted-title">${data.telephoneNumber}</p>
-                <p class="posted-title">${data.comment}</p>
+                <table>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Phone</th>
+                    <th>Comment</th>
+                </tr>
+                <tr>
+                    <td class="posted-title">${data.firstName}</td>
+                    <td class="posted-title">${data.lastName}</td>
+                    <td class="posted-title">${data.telephoneNumber}</td>
+                    <td class="posted-title">${data.comment}</td>
+                </tr>
+                <table>
             </div>
             `;
         });

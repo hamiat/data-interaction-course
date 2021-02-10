@@ -132,7 +132,7 @@ newsItems.addEventListener('click', function (e) {
 addNewsForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    fetch(apiUrlAdmin, {
+    fetch(apiUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json; charset=UFT-8'
@@ -185,10 +185,20 @@ function changeToContact (){
         data.forEach(data => {
             outputAdminPosts += `
             <div data-id=${data.id}>
-                <p class="posted-title">${data.firstName}</p>
-                <p class="posted-title">${data.lastName}</p>
-                <p class="posted-title">${data.telephoneNumber}</p>
-                <p class="posted-title">${data.comment}</p>
+            <table>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Phone</th>
+                    <th>Comment</th>
+                </tr>
+                <tr>
+                    <td class="posted-title">${data.firstName}</td>
+                    <td class="posted-title">${data.lastName}</td>
+                    <td class="posted-title">${data.telephoneNumber}</td>
+                    <td class="posted-title">${data.comment}</td>
+                </tr>
+                <table>
             </div>
             `;
         });
@@ -206,42 +216,42 @@ function changeToContact (){
         console.log('rejected', err);
     });
 
+    /*
+    //post new news items to database via url
+        addNewsForm.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-//post new news items to database via url
-    addNewsForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UFT-8'
+                },
+                body: JSON.stringify({
+                    firstName: firstName.value,
+                    lastName: lastName.value,
+                    telephoneNumber: telephoneNumber.value,
+                    comment: comment.value
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw Error("Promise rejected");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const dataArr = []; //posted news item is now an array
+                    dataArr.push(data);
+                    adminPosts(dataArr);
+                    location.reload();
+                    console.log(dataArr);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
 
-        fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=UFT-8'
-            },
-            body: JSON.stringify({
-                firstName: firstName.value,
-                lastName: lastName.value,
-                telephoneNumber: telephoneNumber.value,
-                comment: comment.value
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw Error("Promise rejected");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const dataArr = []; //posted news item is now an array
-                dataArr.push(data);
-                adminPosts(dataArr);
-                location.reload();
-                console.log(dataArr);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-
-    });
-
+        });
+    */
 
 }
 
