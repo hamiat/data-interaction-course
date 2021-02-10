@@ -72,6 +72,11 @@ class Api
             $recentNewsApi->setup($group);
         });
 
+        //get admin posts - uses AdminPostsAPI
+        $recentNewsApi = new AdminPostsAPI(new NewsService($pdo));
+        $app->group('/api/adminposts', function (Group $group) use ($recentNewsApi) {
+            $recentNewsApi->setup($group);
+        });
 
 
 

@@ -30,7 +30,7 @@ class NewsService
     {
         return $this->pdo->prepare($query);
     }
-
+    // get all news
     public function getNews(): array
     {
         $query = "select * from newsletter ORDER BY id DESC";
@@ -43,6 +43,8 @@ class NewsService
         }
         return $newitems;
     }
+
+
 
     //get most from newsletter the latest (only 1) news
     public function getMostRecent(): array
@@ -57,6 +59,7 @@ class NewsService
         }
         return $mostRecent;
     }
+
 
     public function getNewsItem(int $id): ?NewsModel
     {
@@ -99,6 +102,21 @@ class NewsService
         $query = "delete from newsletter where id=:id";
         $statement = $this->prepare($query);
         $statement->execute(['id' => $id]);
+    }
+
+    /********admin section ******/
+
+    public function getAdminPosts(): array
+    {
+        $query = "select * from contactInfo ORDER BY id DESC";
+        $statement = $this->prepare($query);
+        $statement->execute();
+
+        $newAdminItems = array();
+        while ($entry = $statement->fetchObject(NewsModel::class)) {
+            $newAdminItems[] = $entry;
+        }
+        return $newAdminItems;
     }
 
 }

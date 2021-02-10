@@ -4,8 +4,10 @@ let aboutBtn = document.getElementById('about-btn');
 let contactBtn = document.getElementById('contact-btn');
 let apiUrl = 'http://localhost:8080/api/newsletter';
 let apiUrl2 = 'http://localhost:8080/api/recent';
+let apiUrlAdmin = 'http://localhost:8080/api/adminposts';
 let output = '';
 let outputTwo = '';
+let outputAdmin = '';
 
 aboutBtn.addEventListener('click', changeToAbout);
 contactBtn.addEventListener('click', changeToContact);
@@ -88,6 +90,34 @@ function changeToAbout () {
     history.pushState(null, null, "about");
     newsItems.innerHTML = "Test test";
     recentItems.innerHTML = "";
+
+    //display all admin posts
+    const adminPosts = function (data){
+        data.forEach(data => {
+            outputAdmin = `
+            <div data-id=${data.id}>
+                <p class="posted-title">${data.firstName}</p>
+                <p class="posted-title">${data.lastName}</p>
+                <p class="posted-title">${data.telephoneNumber}</p>
+                <p class="posted-title">${data.comment}</p>
+            </div>
+            `;
+        });
+
+        newsItems.innerHTML = outputAdmin;
+    };
+
+// get admin's posts from database via url
+    fetch(apiUrlAdmin).then((response) => {
+        console.log(' resolved', response);
+        return response.json();
+    }).then(data => {
+        adminPosts(data);
+    }).catch((err) => {
+        console.log('rejected', err);
+    });
+
+
 }
 
 

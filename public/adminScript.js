@@ -3,9 +3,15 @@ let addNewsForm = document.getElementById('postNewsItem');
 let title = document.getElementById('news-title');
 let news = document.getElementById('news-content');
 let submitBtn = document.getElementById('submit-btn');
+let contactBtn = document.getElementById('contact-btn');
+let apiUrlAdmin = 'http://localhost:8080/api/adminposts';
+let labelNewsTitle = document.getElementById('newsTitle')
+
 
 let apiUrl = 'http://localhost:8080/api/newsletter';
 let output = '';
+
+contactBtn.addEventListener('click', changeToContact);
 
 let renderNewsItems = function (data){
     data.forEach(data => {
@@ -151,7 +157,51 @@ addNewsForm.addEventListener('submit', function(e) {
 });
 
 
+//change url path to "contact" without changing the page
+function changeToContact (){
+    history.pushState(null, null, "admins-posts");
+    newsItems.innerHTML = "";
+    addNewsForm.innerHTML = `
+    <form class="test-form" >
+            <label for="firstName" class="contact-label">First Name</label>
+            <input type="text" name="firstName" id=firstName">
+            <label for="lastName" class="contact-label">Last name</label>
+            <input type="text" name="lastName" id=lastName">
+            <label for="contactNumber" class="contact-label">Telephone number</label>
+            <input type="number" name="contactNumber" id="contactNumber">
+            <label for="contactComment">Comment</label>
+            <textarea id="contactComment" ></textarea>
+            <button type="submit" id="submit-btn">Save Post</button>
+        </form>
+    `
 
+    //display all admin posts
+    const adminPosts = function (data){
+        data.forEach(data => {
+            outputAdmin = `
+            <div data-id=${data.id}>
+                <p class="posted-title">${data.firstName}</p>
+                <p class="posted-title">${data.lastName}</p>
+                <p class="posted-title">${data.telephoneNumber}</p>
+                <p class="posted-title">${data.comment}</p>
+            </div>
+            `;
+        });
+
+        newsItems.innerHTML = outputAdmin;
+    };
+
+// get admin's posts from database via url
+    fetch(apiUrlAdmin).then((response) => {
+        console.log(' resolved', response);
+        return response.json();
+    }).then(data => {
+        adminPosts(data);
+    }).catch((err) => {
+        console.log('rejected', err);
+    });
+
+}
 
 
 
