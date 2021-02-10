@@ -71,20 +71,20 @@ main{
 grid-column: 1 / span 3;
 grid-row: 3;
 display: grid;
-grid-template-columns:  1fr 1fr 1fr;
+grid-template-columns:  repeat(9, 1fr);
 
 }
 
 
 .recentNews{
-grid-column: 2 / span 1;
+grid-column: 3 / span 3;
 grid-row: 1;
 
 
 }
 
 .allNews{
-grid-column: 3 / span 1;
+grid-column: 7 / span 2;
 grid-row: 1;
 
 }

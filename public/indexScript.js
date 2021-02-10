@@ -1,7 +1,7 @@
 let newsItems = document.getElementById('allNewsContainer');
 let recentItems = document.getElementById('recentNewsContainer');
-let aboutBtn = document.getElementById('about-btn');
 let contactBtn = document.getElementById('contact-btn');
+let testBtn = document.getElementById('test-btn');
 let apiUrl = 'http://localhost:8080/api/newsletter';
 let apiUrl2 = 'http://localhost:8080/api/recent';
 let apiUrlAdmin = 'http://localhost:8080/api/adminposts';
@@ -9,8 +9,8 @@ let output = '';
 let outputTwo = '';
 let outputAdmin = '';
 
-aboutBtn.addEventListener('click', changeToAbout);
-contactBtn.addEventListener('click', changeToContact);
+contactBtn.addEventListener('click', changeToAbout);
+testBtn.addEventListener('click', changeToContact);
 
 //display most recent news
 const renderRecentNews = function (data){

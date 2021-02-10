@@ -2,6 +2,10 @@ let newsItems = document.getElementById('newsItemsContainer');
 let addNewsForm = document.getElementById('postNewsItem');
 let title = document.getElementById('news-title');
 let news = document.getElementById('news-content');
+let firstName = document.getElementById('firstName');
+let lastName = document.getElementById('lastName');
+let telephoneNumber = document.getElementById('telephoneNumber')
+let comment = document.getElementById('contactComment')
 let submitBtn = document.getElementById('submit-btn');
 let contactBtn = document.getElementById('contact-btn');
 let apiUrlAdmin = 'http://localhost:8080/api/adminposts';
@@ -127,7 +131,7 @@ newsItems.addEventListener('click', function (e) {
 addNewsForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    fetch(apiUrl, {
+    fetch(apiUrlAdmin, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json; charset=UFT-8'
@@ -170,7 +174,7 @@ function changeToContact (){
             <label for="contactNumber" class="contact-label">Telephone number</label>
             <input type="number" name="contactNumber" id="contactNumber">
             <label for="contactComment">Comment</label>
-            <textarea id="contactComment" ></textarea>
+            <textarea id="contactComment"></textarea>
             <button type="submit" id="submit-btn">Save Post</button>
         </form>
     `
@@ -178,7 +182,7 @@ function changeToContact (){
     //display all admin posts
     const adminPosts = function (data){
         data.forEach(data => {
-            outputAdmin = `
+            outputAdminPosts = `
             <div data-id=${data.id}>
                 <p class="posted-title">${data.firstName}</p>
                 <p class="posted-title">${data.lastName}</p>
@@ -188,7 +192,7 @@ function changeToContact (){
             `;
         });
 
-        newsItems.innerHTML = outputAdmin;
+        newsItems.innerHTML = outputAdminPosts;
     };
 
 // get admin's posts from database via url
@@ -200,6 +204,43 @@ function changeToContact (){
     }).catch((err) => {
         console.log('rejected', err);
     });
+
+
+//post new news items to database via url
+    addNewsForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UFT-8'
+            },
+            body: JSON.stringify({
+                firstName: firstName.value,
+                lastName: lastName.value,
+                telephoneNumber: telephoneNumber.value,
+                comment: comment.value
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw Error("Promise rejected");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const dataArr = []; //posted news item is now an array
+                dataArr.push(data);
+                adminPosts(dataArr);
+                location.reload();
+                console.log(dataArr);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    });
+
 
 }
 
