@@ -9,8 +9,8 @@ let output = '';
 let outputTwo = '';
 let outputAdmin = '';
 
-contactBtn.addEventListener('click', changeToAbout);
-testBtn.addEventListener('click', changeToContact);
+contactBtn.addEventListener('click', changeToContact);
+testBtn.addEventListener('click', changeToTest);
 
 //display most recent news
 const renderRecentNews = function (data){
@@ -79,15 +79,15 @@ function collapsible() {
 }
 
 //change url path to "contact" without changing the page
-function changeToContact (){
+function changeToTest (){
     history.pushState(null, null, "contact");
     newsItems.innerHTML = "Hej då";
     recentItems.innerHTML = "";
 }
 
-function changeToAbout () {
+function changeToContact () {
     //change url path to "about" without changing the page
-    history.pushState(null, null, "about");
+    history.pushState(null, null, "contact");
     newsItems.innerHTML = "Test test";
     recentItems.innerHTML = "";
 

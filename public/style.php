@@ -44,7 +44,7 @@ ul li {
 padding: 1em 5em ;
 }
 
-.aboutBtn, .contactBtn, .homeBtn {
+.testBtn, .contactBtn, .homeBtn {
 text-decoration: underline;
 text-decoration-style: dotted;
 cursor: pointer;
