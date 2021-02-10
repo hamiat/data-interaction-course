@@ -33,7 +33,7 @@ class NewsService
 
     public function getNews(): array
     {
-        $query = "select * from newsletter";
+        $query = "select * from newsletter ORDER BY id DESC";
         $statement = $this->prepare($query);
         $statement->execute();
 
@@ -44,17 +44,18 @@ class NewsService
         return $newitems;
     }
 
-    public function getPosts(): array
+    //get most from newsletter the latest (only 1) news
+    public function getMostRecent(): array
     {
-        $query = "select * from posts";
+        $query = "select * from newsletter ORDER BY id DESC LIMIT 1";
         $statement = $this->prepare($query);
         $statement->execute();
 
-        $postedItems = array();
+        $mostRecent = array();
         while ($entry = $statement->fetchObject(NewsModel::class)) {
-            $postedItems[] = $entry;
+            $mostRecent[] = $entry;
         }
-        return $postedItems;
+        return $mostRecent;
     }
 
     public function getNewsItem(int $id): ?NewsModel

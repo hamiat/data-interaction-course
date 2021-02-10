@@ -60,11 +60,20 @@ class Api
             return $response;
         });
 
-
+        //all news uses NewsApi
         $newsApi = new NewsApi(new NewsService($pdo));
         $app->group('/api/newsletter', function (Group $group) use ($newsApi) {
             $newsApi->setup($group);
         });
+
+        //recent news - uses RecentNewsApi
+        $recentNewsApi = new RecentNewsApi(new NewsService($pdo));
+        $app->group('/api/recent', function (Group $group) use ($recentNewsApi) {
+            $recentNewsApi->setup($group);
+        });
+
+
+
 
         return $app;
     }

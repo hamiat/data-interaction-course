@@ -70,19 +70,23 @@ font-size: 2.7em;
 main{
 grid-column: 1 / span 3;
 grid-row: 3;
+display: grid;
+grid-template-columns:  1fr 1fr 1fr;
 
 }
 
-.form-section{
-text-align: center;
-align-items: center;
-color: black;
+
+.recentNews{
+grid-column: 2 / span 1;
+grid-row: 1;
 
 
 }
 
-form *{
-width: 100%
+.allNews{
+grid-column: 3 / span 1;
+grid-row: 1;
+
 }
 
 p{
@@ -122,6 +126,14 @@ font-weight: 400;
 font-size: 1.2em;
 }
 
+.mostRecentNews{
+padding: 0 5px;
+font-family: monospace;
+font-weight: 400;
+font-size: 1.2em;
+background-color: red;
+}
+
 #news-date{
 padding: 0 5px ;
 font-size: 0.7em;
@@ -129,4 +141,7 @@ font-family: monospace;
 
 }
 
+.tester {
+background-color: green;
+}
 

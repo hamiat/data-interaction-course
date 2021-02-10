@@ -33,6 +33,13 @@ class NewsApi
             $response->getBody()->write(json_encode($this->newsService->getNews()));
             return $response->withHeader('Content-Type', 'application/json');
         });
+
+        /*get most recent news */
+      //  $group->get('', function (Request $request, Response $response, $args) {
+     //       $response->getBody()->write(json_encode($this->newsService->getMostRecent()));
+        //return $response->withHeader('Content-Type', 'application/json');
+        //});
+
         /*create news */
         $group->post('', function (Request $request, Response $response, $args) {
             $model = $this->getNewsModelFromRequest();
