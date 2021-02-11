@@ -20,15 +20,28 @@ display: flex;
 justify-content: center;
 font-family: calibri;
 
+border: 2px ridge slategrey;
+
 }
-nav a {
+.home {
 border: 2px ridge palegreen;
 background-color: #FCFCFC;
+margin: 0 200px 0 0;
 }
 
-nav a:hover{
+.home:hover{
 background-color: palegreen;
+}
 
+ul {
+list-style: none;
+display: flex;
+padding: 0 10px 0 0;
+}
+
+.contactBtn{
+cursor: pointer;
+color: blue;
 }
 
 main{
@@ -128,4 +141,8 @@ font-weight: 800;
 #second-title{
 font-size: 1.2em;
 font-family: monospace;
+}
+
+table, th, td {
+border: 1px solid black;
 }

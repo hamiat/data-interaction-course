@@ -19,7 +19,7 @@ display: flex;
 justify-content: center;
 border: 2px ridge slategrey;
 font-family: calibri;
-
+background-color: #F0F0F0;
 }
 
 button{
@@ -141,7 +141,22 @@ font-family: monospace;
 
 }
 
+.news-date{
+padding: 0 5px ;
+font-size: 0.9em;
+font-family: monospace;
+}
+
+.recent-title {
+font-weight: 900;
+font-family: monospace;
+}
+
 .tester {
 background-color: green;
+}
+
+table, th, td {
+border: 1px solid black;
 }
 

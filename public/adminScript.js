@@ -191,7 +191,7 @@ function changeToContact (){
                     <th>Lastname</th>
                     <th>Phone</th>
                     <th>Comment</th>
-                </tr>
+                </tr><br>
                 <tr>
                     <td class="posted-title">${data.firstName}</td>
                     <td class="posted-title">${data.lastName}</td>

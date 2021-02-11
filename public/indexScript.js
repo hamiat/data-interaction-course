@@ -1,6 +1,7 @@
 let newsItems = document.getElementById('allNewsContainer');
 let recentItems = document.getElementById('recentNewsContainer');
 let contactBtn = document.getElementById('contact-btn');
+let mainTitle = document.getElementById('mainTitle')
 let testBtn = document.getElementById('test-btn');
 let apiUrl = 'http://localhost:8080/api/newsletter';
 let apiUrl2 = 'http://localhost:8080/api/recent';
@@ -17,8 +18,8 @@ const renderRecentNews = function (data){
     data.forEach(data => {
         outputTwo = `
             <div data-id=${data.id}>
-                <p class="posted-title">${data.title}</p>
-                <p class="posted-title">${data.created}</p>
+                <p class="recent-title">${data.title}</p>
+                <p class="news-date">${data.created}</p>
                 <p class="posted-title">${data.content}</p>
             </div>
             `;
@@ -80,9 +81,9 @@ function collapsible() {
 
 //change url path to "contact" without changing the page
 function changeToTest (){
-    history.pushState(null, null, "contact");
-    newsItems.innerHTML = "Hej då";
-    recentItems.innerHTML = "";
+    history.pushState(null, null, "all-news");
+    newsItems.innerHTML = "";
+    renderNewsItems(data);
 }
 
 function changeToContact () {
@@ -90,6 +91,7 @@ function changeToContact () {
     history.pushState(null, null, "contact");
     newsItems.innerHTML = "Test test";
     recentItems.innerHTML = "";
+
 
     //display all admin posts
     const adminPosts = function (data){
@@ -102,7 +104,7 @@ function changeToContact () {
                     <th>Lastname</th>
                     <th>Phone</th>
                     <th>Comment</th>
-                </tr>
+                </tr><br>
                 <tr>
                     <td class="posted-title">${data.firstName}</td>
                     <td class="posted-title">${data.lastName}</td>
